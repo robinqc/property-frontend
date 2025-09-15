@@ -11,7 +11,7 @@ export default function PropertyListItem({ property }: Props) {
             <div className="flex gap-6 p-4 rounded-xl transition-all duration-200 bg-card cursor-pointer block group" id={property.idProperty} onClick={() => {
                 window.location.href = `/properties/${property.idProperty}`;
             }}>
-                <div className="relative w-80 h-48 flex-shrink-0 rounded-lg overflow-hidden">
+                <div className="relative w-80 h-60 flex-shrink-0 rounded-lg overflow-hidden">
                 <img
                     src={property.images?.[0]?.file || "https://picsum.photos/200/300"}
                     alt={property.name}

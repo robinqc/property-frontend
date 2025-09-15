@@ -17,7 +17,7 @@ export function PropertySection({ title, properties }: PropertySectionProps) {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold text-foreground">{title}</h2>
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center space-x-2  hidden sm:hidden md:inline-flex">
             <Button
               variant={viewMode === "grid" ? "default" : "outline"}
               size="icon"

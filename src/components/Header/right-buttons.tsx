@@ -6,7 +6,6 @@ export default function RightButtons() {
         <div className="flex items-center space-x-4">
 
             <Button variant="ghost" size="icon">
-              <User className="h-5 w-5" />
             </Button>
 
             <Button variant="ghost" size="icon" className="md:hidden">

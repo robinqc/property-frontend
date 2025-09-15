@@ -1,14 +1,11 @@
 "use client"
 import { Card, CardContent } from "@/components/ui/card"
 import { Star } from "lucide-react"
-import Link from "next/link"
 
 export function PropertyCard({ idProperty, name, address, price, images }: Property) {
   return (
     <Card className="group overflow-hidden border-none shadow-none hover:shadow-none transition-all duration-300 pt-0 cursor-pointer bg-transparent"
       onClick={() => {
-        console.log("Clicked property with ID:", idProperty);
-        // Navigate to property details page
         window.location.href = `/properties/${idProperty}`;
       }}
     >
