@@ -1,13 +1,12 @@
 import { getPropertyById } from "@/api/properties"
 import { ImageCarousel } from "@/components/image-carousel"
-import { InfoLabel } from "@/components/property-details/info-label"
 import DetailsContainer from "@/components/property-details/details-container"
+import PropertyHeader from "@/components/property-header"
 import { PropertyMap } from "@/components/property-map"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { DatePicker } from "@/components/ui/date-picker"
-import { ArrowLeft, Heart, Share, Star, MapPin, Wifi, Car, Coffee, Tv } from "lucide-react"
-import Link from "next/link"
+import { MapPin } from "lucide-react"
 
 interface Props {
     params?: Promise<{
@@ -26,30 +25,7 @@ export default async function PropertyDetailsPage(props: Props) {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <div className="top-0 z-50">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <Link href="/">
-              <Button variant="ghost" size="sm" className="gap-2">
-                <ArrowLeft className="h-4 w-4" />
-                Back to listings
-              </Button>
-            </Link>
-            <div className="flex items-center gap-2">
-              <Button variant="ghost" size="sm" className="gap-2">
-                <Share className="h-4 w-4" />
-                Share
-              </Button>
-              <Button variant="ghost" size="sm" className="gap-2">
-                <Heart className="h-4 w-4" />
-                Save
-              </Button>
-            </div>
-          </div>
-        </div>
-      </div>
-
+      <PropertyHeader />
       <div className="container mx-auto px-10 ">
         {/* Property Images */}
         <div className="mb-8">
