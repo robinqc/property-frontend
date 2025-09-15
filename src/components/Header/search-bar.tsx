@@ -6,25 +6,40 @@ import { Input } from "@/components/ui/input"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import useStateData from "@/hooks/useStateData"
 
-export function Header() {
-  const [priceRange, setPriceRange] = useState([50000, 500000])
+export function SearchBar() {
+    const {
+        searchTerm,
+        setSearchTerm,
+        minPrice,
+        maxPrice,
+        setMinPrice,
+        setMaxPrice
+    } = useStateData();
+    const priceRange = [minPrice || 50000, maxPrice || 500000];
+    const setPriceRange = (range: [number, number]) => {
+        setMinPrice?.(range[0]);
+        setMaxPrice?.(range[1]);
+    };
+    const [_, setInternalSearchTerm] = useState(searchTerm || "");
+    const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(_);
+    useEffect(() => {
+        const handler = setTimeout(() => {
+            console.log("Debounced search term to:", _);
+            setDebouncedSearchTerm(_);
+        }, 600); // 300ms debounce
 
-  return (
-    <header className="fixed top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/30">
-      <div className="container mx-auto px-4">
-        <div className="flex h-16 items-center justify-between">
-          {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <div className="flex items-center justify-center w-8 h-8 bg-primary rounded-lg">
-              <Home className="h-5 w-5 text-primary-foreground" />
-            </div>
-            <span className="text-xl font-bold text-foreground font-[Cinzel]">MILLION</span>
-          </div>
-
-          {/* Search Bar */}
-          <div className="hidden md:flex flex-1 max-w-md mx-8">
+        return () => {
+            clearTimeout(handler);
+        };
+    }, [_]);
+    useEffect(() => {
+        console.log("Updating global searchTerm to:", debouncedSearchTerm);
+        setSearchTerm?.(debouncedSearchTerm);
+    }, [debouncedSearchTerm]);
+    return <div className="hidden md:flex flex-1 max-w-md mx-8">
             <div className="relative w-full flex">
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -32,6 +47,8 @@ export function Header() {
                   type="search"
                   placeholder="Search properties by name, location, neighborhood..."
                   className="pl-10 pr-4 w-full bg-muted/50 border-border focus:bg-background rounded-r-none"
+                value={_}
+                onChange={(e) => setInternalSearchTerm(e.target.value)}
                 />
               </div>
               <Popover>
@@ -52,9 +69,9 @@ export function Header() {
                         <Slider
                           value={priceRange}
                           onValueChange={setPriceRange}
-                          max={1000000}
-                          min={50000}
-                          step={10000}
+                          max={300000000}
+                          min={1000000}
+                          step={10000000}
                           className="w-full"
                         />
                       </div>
@@ -74,20 +91,4 @@ export function Header() {
               </Popover>
             </div>
           </div>
-
-          {/* Navigation & Account */}
-          <div className="flex items-center space-x-4">
-
-            <Button variant="ghost" size="icon">
-              <User className="h-5 w-5" />
-            </Button>
-
-            <Button variant="ghost" size="icon" className="md:hidden">
-              <Menu className="h-5 w-5" />
-            </Button>
-          </div>
-        </div>
-      </div>
-    </header>
-  )
 }
