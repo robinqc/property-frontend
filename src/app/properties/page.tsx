@@ -1,6 +1,5 @@
 import { PropertySection } from "@/components/property-section";
 import { getProperties } from "@/api/properties";
-import { QueryClient } from "@tanstack/react-query";
 
 interface Props {
     searchParams?: Promise<{
