@@ -42,6 +42,7 @@ export function ImageCarousel({ images, title }: ImageCarouselProps) {
               variant="ghost"
               size="icon"
               className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white/90 shadow-md"
+              aria-label="Previous image"
               onClick={goToPrevious}
             >
               <ChevronLeft className="h-4 w-4" />
@@ -50,6 +51,7 @@ export function ImageCarousel({ images, title }: ImageCarouselProps) {
               variant="ghost"
               size="icon"
               className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white/90 shadow-md"
+              aria-label="Next image"
               onClick={goToNext}
             >
               <ChevronRight className="h-4 w-4" />
