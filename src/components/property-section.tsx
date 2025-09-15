@@ -22,6 +22,7 @@ export function PropertySection({ title, properties }: PropertySectionProps) {
               variant={viewMode === "grid" ? "default" : "outline"}
               size="icon"
               className="h-8 w-8 rounded-full"
+              data-testid="grid-view-btn"
               onClick={() => setViewMode("grid")}
             >
               <Grid3X3 className="h-4 w-4" />
@@ -30,6 +31,7 @@ export function PropertySection({ title, properties }: PropertySectionProps) {
               variant={viewMode === "list" ? "default" : "outline"}
               size="icon"
               className="h-8 w-8 rounded-full"
+              data-testid="list-view-btn"
               onClick={() => setViewMode("list")}
             >
               <List className="h-4 w-4" />

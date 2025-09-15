@@ -5,7 +5,9 @@ import { redirect } from "next/navigation"
 
 export function PropertyCard({ idProperty, name, address, price, images, overview }: Property) {
   return (
-    <Card className="group overflow-hidden border-none shadow-none hover:shadow-none transition-all duration-300 pt-0 cursor-pointer bg-transparent"
+    <Card
+      className="group overflow-hidden border-none shadow-none hover:shadow-none transition-all duration-300 pt-0 cursor-pointer bg-transparent"
+      data-testid="property-card"
       onClick={() => {
         redirect(`/properties/${idProperty}`);
       }}
