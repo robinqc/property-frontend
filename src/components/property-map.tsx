@@ -46,7 +46,7 @@ export function PropertyMap({ latitude, longitude, title }: PropertyMapProps) {
         integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
         crossOrigin=""
       />
-      <div ref={mapRef} className="h-120 w-full rounded-lg border" style={{ minHeight: "256px" }} />
+      <div ref={mapRef} className="h-120 w-full rounded-lg border z-1" style={{ minHeight: "256px" }} />
     </>
   )
 }
