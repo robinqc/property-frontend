@@ -28,7 +28,7 @@ export default function PropertyListItem({ property }: Props) {
                     <span className="text-sm">{property.address}</span>
                     </div>
                     <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                    {property.overview.slice(0, 200)}...
+                    {property.overview.slice(0, 350)}...
                     </p>
                 </div>
                 <div className="flex items-center justify-between">
