@@ -2,7 +2,7 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Star } from "lucide-react"
 
-export function PropertyCard({ idProperty, name, address, price, images }: Property) {
+export function PropertyCard({ idProperty, name, address, price, images, overview }: Property) {
   return (
     <Card className="group overflow-hidden border-none shadow-none hover:shadow-none transition-all duration-300 pt-0 cursor-pointer bg-transparent"
       onClick={() => {
@@ -41,6 +41,9 @@ export function PropertyCard({ idProperty, name, address, price, images }: Prope
               <span className="text-foreground font-[Cinzel]">{price?.toLocaleString()}</span>
             </p>
           </div>
+          <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+            {overview.slice(0, 100)}...
+          </p>
         </div>
       </CardContent>
     </Card>
