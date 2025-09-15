@@ -1,10 +1,15 @@
+interface PropertyImage {
+    ifProperty: string;
+    file: string;
+}
+
 interface Property {
     idProperty: string;
     name: string;
     price: number;
     idOwner: string;
     address: string;
-    images: string[];
+    images: PropertyImage[];
     bedrooms: number;
     bathrooms: number;
     garageSpaces: number;

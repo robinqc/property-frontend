@@ -1,6 +1,7 @@
 import { getPropertyById } from "@/api/properties"
 import { ImageCarousel } from "@/components/image-carousel"
-import { InfoLabel } from "@/components/info-label"
+import { InfoLabel } from "@/components/property-details/info-label"
+import DetailsContainer from "@/components/property-details/details-container"
 import { PropertyMap } from "@/components/property-map"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -47,17 +48,10 @@ export default async function PropertyDetailsPage({ params }: PropertyDetailsPro
       <div className="container mx-auto px-10 ">
         {/* Property Images */}
         <div className="mb-8">
-          <ImageCarousel images={property?.images || [
-            "https://picsum.photos/800/600",
-            "https://picsum.photos/800/601",
-            "https://picsum.photos/800/602",
-            "https://picsum.photos/800/603",
-            "https://picsum.photos/800/604",
-          ]} title={property?.name || ''} />
+          <ImageCarousel images={property?.images || []} title={property?.name || ''} />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Property Info */}
           <div className="lg:col-span-2 space-y-6">
             <div className="prose prose-headings:font-[Cinzel]">
               <h1 className="text-3xl font-bold text-foreground mb-2">{property?.name}</h1>
@@ -68,17 +62,7 @@ export default async function PropertyDetailsPage({ params }: PropertyDetailsPro
                 </div>
               </div>
             </div>
-
-            <div className="flex justify-evenly gap-6 py-10 border overflow-wrap flex-wrap rounded-lg">
-              <InfoLabel label="Bedrooms" value={property?.bedrooms || 0} />
-                <InfoLabel label="Bathrooms" value={property?.bathrooms || 0} />
-                <InfoLabel label="Garage Spaces" value={property?.garageSpaces || 0} />
-                <InfoLabel label="Livable Area (sq ft)" value={property?.livableArea || 0} />
-                <InfoLabel label="Total Area (sq ft)" value={property?.totalArea || 0} />
-                <InfoLabel label="Year Built" value={property?.year || 'N/A'} />
-                <InfoLabel label="Type" value={property?.type || 'N/A'} />
-            </div>
-
+            <DetailsContainer property={property!} />
             <div>
               <h2 className="text-xl font-semibold mb-4">About this place</h2>
               <p className="text-muted-foreground leading-relaxed">{property?.overview}</p>
@@ -104,7 +88,7 @@ export default async function PropertyDetailsPage({ params }: PropertyDetailsPro
               <CardContent className="">
                 <div className="mb-4">
                   <div className="font-[Cinzel] text-2xl font-bold">
-                    <span className="text-4xl text-foreground">$ {property?.price.toLocaleString()}</span> 
+                    <span className="text-3xl text-foreground">$ {property?.price.toLocaleString()}</span> 
                   </div>
                   
                 </div>

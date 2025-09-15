@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 
 interface ImageCarouselProps {
-  images: string[]
+  images: PropertyImage[]
   title: string
 }
 
@@ -23,19 +23,20 @@ export function ImageCarousel({ images, title }: ImageCarouselProps) {
   const goToSlide = (index: number) => {
     setCurrentIndex(index)
   }
+  console.log(images);
 
   return (
     <div className="w-full">
       {/* Main Image */}
       <div className="relative w-full aspect-[16/10] overflow-hidden rounded-lg bg-gray-100">
         <img
-          src={images[currentIndex] || "/placeholder.svg"}
+          src={images?.[currentIndex]?.file || "/placeholder.svg"}
           alt={`${title} - Image ${currentIndex + 1}`}
           className="w-full h-full object-cover transition-opacity duration-300"
         />
 
         {/* Navigation Arrows */}
-        {images.length > 1 && (
+        {images?.length > 1 && (
           <>
             <Button
               variant="ghost"
@@ -57,13 +58,13 @@ export function ImageCarousel({ images, title }: ImageCarouselProps) {
         )}
 
         {/* Image Counter */}
-        {images.length > 1 && (
+        {images?.length > 1 && (
           <div className="absolute top-4 right-4 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
-            {currentIndex + 1} / {images.length}
+            {currentIndex + 1} / {images?.length}
           </div>
         )}
 
-        {images.length > 1 && (
+        {images?.length > 1 && (
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2">
             <div className="flex gap-2 p-2">
               {images.map((image, index) => (
@@ -77,7 +78,7 @@ export function ImageCarousel({ images, title }: ImageCarouselProps) {
                   onClick={() => goToSlide(index)}
                 >
                   <img
-                    src={image || "/placeholder.svg"}
+                    src={image?.file || "/placeholder.svg"}
                     alt={`${title} - Thumbnail ${index + 1}`}
                     className="w-full h-full object-cover"
                   />

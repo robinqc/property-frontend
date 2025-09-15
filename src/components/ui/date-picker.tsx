@@ -12,11 +12,13 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
- 
+
+interface DatePickerProps
+  extends React.HTMLAttributes<HTMLDivElement> {}
+
 export function DatePicker({
-    className,
-    ...props
-}) {
+    className
+}: DatePickerProps) {
   const [date, setDate] = React.useState<Date>()
  
   return (

@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Providers } from "@/components/providers";
-import { Header } from "@/components/Header/header";
+import { Header } from "@/components/header/header";
 import { Footer } from "@/components/footer";
 
 const geistSans = Geist({
@@ -27,19 +26,19 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <link rel="preconnect" href="https://fonts.googleapis.com"></link>
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin></link>
-      <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet"></link>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com"></link>
+        <link rel="preconnect" href="https://fonts.gstatic.com"></link>
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&display=swap" rel="stylesheet"></link>
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased headings:font-[Cinzel]`}
       >
-        <Providers>
-          <Header />
-          <div className="pt-16">{/* Padding to offset fixed header */}
-            {children}
-          </div>
+        <Header />
+        <div className="pt-16 min-h-screen flex flex-col justify-between">{/* Padding to offset fixed header */}
+          {children}
           <Footer />
-        </Providers>
+        </div>
       </body>
     </html>
   );
