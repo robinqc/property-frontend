@@ -1,6 +1,8 @@
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { PropertyCard } from '../property-card';
+
+import { redirect } from 'next/navigation';
 jest.mock('next/navigation', () => ({ redirect: jest.fn() }));
 
 const mockProperty = {
@@ -40,7 +42,6 @@ describe('PropertyCard', () => {
   });
 
   it('navigates to property details on click', () => {
-    const { redirect } = require('next/navigation');
     render(<PropertyCard {...mockProperty} />);
     fireEvent.click(screen.getByTestId('property-card'));
     expect(redirect).toHaveBeenCalledWith('/properties/1');

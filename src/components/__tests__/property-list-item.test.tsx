@@ -1,6 +1,8 @@
 import '@testing-library/jest-dom';
 import { render, screen, fireEvent } from '@testing-library/react';
 import PropertyListItem from '../property-list-item';
+
+import { redirect } from 'next/navigation';
 jest.mock('next/navigation', () => ({
   redirect: jest.fn(),
 }));
@@ -42,7 +44,6 @@ describe('PropertyListItem', () => {
   });
 
   it('navigates to property details on click', () => {
-    const { redirect } = require('next/navigation');
     render(<PropertyListItem property={mockProperty} />);
     fireEvent.click(screen.getByTestId('property-list-item'));
     expect(redirect).toHaveBeenCalledWith('/properties/1');

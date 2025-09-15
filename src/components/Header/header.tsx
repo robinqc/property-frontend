@@ -3,7 +3,7 @@
 import { SearchBar } from "@/components/search-bar/search-bar"
 import Logo from "./logo"
 import RightButtons from "./right-buttons"
-import { useState } from "react"
+import { Suspense, useState } from "react"
 
 export function Header() {
   const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false)
@@ -12,7 +12,9 @@ export function Header() {
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           <Logo />
-          <SearchBar />
+          <Suspense>
+            <SearchBar />
+          </Suspense>
           <RightButtons isMobileSearchOpen={isMobileSearchOpen} setIsMobileSearchOpen={setIsMobileSearchOpen} />
         </div>
           {isMobileSearchOpen && <SearchBar isMobile />}
