@@ -38,6 +38,11 @@ export function PropertySection({ title, properties }: PropertySectionProps) {
             </Button>
           </div>
         </div>
+        {properties.length === 0 && (
+          <div className="text-center text-muted-foreground py-10">
+            No properties found.
+          </div>
+        )}
 
         {viewMode === 'grid' ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 overflow-x-auto pb-4">
