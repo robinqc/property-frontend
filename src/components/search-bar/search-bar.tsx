@@ -6,7 +6,11 @@ import { useEffect, useState } from "react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import SearchFilters from "./search-filters"
 
-export function SearchBar() {
+interface Props {
+    isMobile?: boolean;
+}
+
+export function SearchBar({ isMobile }: Props) {
     const pathname = usePathname();
     const { replace } = useRouter();
     const searchParams = useSearchParams();
@@ -31,7 +35,7 @@ export function SearchBar() {
         replace(`${pathname}?${params.toString()}`);
     }, [debouncedSearchTerm]);
     return (
-      <div className="hidden md:flex flex-1 max-w-md mx-8">
+      <div className={`${isMobile ? "flex-col mb-4" : "hidden md:flex"} flex-1 max-w-md mx-8`}>
         <div className="relative w-full flex">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -40,7 +44,6 @@ export function SearchBar() {
               placeholder="Search properties by name, location, neighborhood..."
               className="pl-10 pr-4 w-full bg-muted/50 border-border focus:bg-background rounded-r-none"
               value={internalSearchTerm}
-              defaultValue={searchParams.get('searchTerm')?.toString()}
               onChange={(e) => setInternalSearchTerm(e.target.value)}
             />
             </div>
