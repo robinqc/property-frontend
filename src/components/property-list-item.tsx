@@ -1,6 +1,7 @@
 import { MapPin, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 interface Props {
     property: Property;
@@ -8,9 +9,14 @@ interface Props {
 
 export default function PropertyListItem({ property }: Props) {
     return (
-            <div className="flex gap-6 p-4 rounded-xl transition-all duration-200 bg-card cursor-pointer block group" id={property.idProperty} onClick={() => {
-                window.location.href = `/properties/${property.idProperty}`;
-            }}>
+            <div
+                className="flex gap-6 p-4 rounded-xl transition-all duration-200 bg-card cursor-pointer block group"
+                id={property.idProperty}
+                data-testid="property-list-item"
+                onClick={() => {
+                    redirect(`/properties/${property.idProperty}`);
+                }}
+            >
                 <div className="relative w-80 h-60 flex-shrink-0 rounded-lg overflow-hidden">
                 <img
                     src={property.images?.[0]?.file || "https://picsum.photos/200/300"}

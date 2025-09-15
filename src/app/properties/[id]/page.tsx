@@ -9,15 +9,20 @@ import { DatePicker } from "@/components/ui/date-picker"
 import { ArrowLeft, Heart, Share, Star, MapPin, Wifi, Car, Coffee, Tv } from "lucide-react"
 import Link from "next/link"
 
-interface PropertyDetailsProps {
-  params: {
-    id: string
-  }
+interface Props {
+    params?: Promise<{
+        id?: string;
+    }>
 }
 
 
-export default async function PropertyDetailsPage({ params }: PropertyDetailsProps) {
-  const property = await getPropertyById(params.id)
+export default async function PropertyDetailsPage(props: Props) {
+  const params = await props.params;
+  const property = await getPropertyById(params?.id || '');
+
+  if (!property) {
+    return <div>Property not found</div>;
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -88,7 +93,7 @@ export default async function PropertyDetailsPage({ params }: PropertyDetailsPro
               <CardContent className="">
                 <div className="mb-4">
                   <div className="font-[Cinzel] text-2xl font-bold">
-                    <span className="text-3xl text-foreground">$ {property?.price.toLocaleString()}</span> 
+                    <span className="text-3xl text-foreground">$ {property?.price?.toLocaleString()}</span> 
                   </div>
                   
                 </div>

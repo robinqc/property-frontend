@@ -1,12 +1,13 @@
 "use client"
 import { Card, CardContent } from "@/components/ui/card"
 import { Star } from "lucide-react"
+import { redirect } from "next/navigation"
 
 export function PropertyCard({ idProperty, name, address, price, images, overview }: Property) {
   return (
     <Card className="group overflow-hidden border-none shadow-none hover:shadow-none transition-all duration-300 pt-0 cursor-pointer bg-transparent"
       onClick={() => {
-        window.location.href = `/properties/${idProperty}`;
+        redirect(`/properties/${idProperty}`);
       }}
     >
       <div className="relative">
