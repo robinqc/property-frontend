@@ -11,10 +11,15 @@ export const getPropertyById = async (id: string): Promise<Property | null> => {
 }
 
 export const getProperties = async (searchParams?: { [key: string]: string | string[] | undefined }): Promise<Property[]> => {
-    console.log("Fetching properties with searchParams:", searchParams);
-    const response = await api.get("/property", {
-        params: searchParams,
-    });
-    return response.data;
+    try {
+        console.log("Fetching properties with searchParams:", searchParams);
+        const response = await api.get("/property", {
+            params: searchParams,
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching properties:", error);
+        return [];
+    }
 }
 
